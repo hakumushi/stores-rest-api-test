@@ -79,7 +79,7 @@ class ItemTest(BaseTest):
 
                 self.assertEqual(resp.status_code, 200)
                 self.assertEqual(ItemModel.find_by_name('test').price, 17.99)
-                self.assertDictEqual({'name': 'test', 'price': 17.99},
+                self.assertDictEqual({'id': 1, 'name': 'test', 'price': 17.99},
                                      json.loads(resp.data))
 
     def test_put_update_item(self):
@@ -94,7 +94,7 @@ class ItemTest(BaseTest):
 
                 self.assertEqual(resp.status_code, 200)
                 self.assertEqual(ItemModel.find_by_name('test').price, 17.99)
-                self.assertDictEqual({'name': 'test', 'price': 17.99},
+                self.assertDictEqual({'id': 1, 'name': 'test', 'price': 17.99},
                                      json.loads(resp.data))
 
     def test_item_list(self):
@@ -105,5 +105,5 @@ class ItemTest(BaseTest):
 
                 resp = client.get('/items')
 
-                self.assertDictEqual({'items': [{'name': 'test', 'price': 5.99}]},
+                self.assertDictEqual({'id': 1, 'items': [{'name': 'test', 'price': 5.99}]},
                                      json.loads(resp.data))
