@@ -3,10 +3,6 @@ from models.user import UserModel
 
 
 class UserRegister(Resource):
-    """
-    This resource allows users to register by sending a
-    POST request with their username and password
-    """
     parser = reqparse.RequestParser()
     parser.add_argument('username',
                         type=str,
@@ -18,6 +14,31 @@ class UserRegister(Resource):
                         help="This field cannot be blank.")
 
     def post(self):
+        """This resource allows users to register by sending a
+        POST request with their username and password
+        ---
+        tags:
+          - user
+        parameters:
+          - name: body
+            in: body
+            type: string
+            required: true
+            schema:
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: username
+                password:
+                  type: string
+                  description: password
+        responses:
+          200:
+            description: The user logged
+        """
         data = UserRegister.parser.parse_args()
 
         if UserModel.find_by_username(data['username']):

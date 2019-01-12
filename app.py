@@ -8,8 +8,11 @@ from security import authenticate, identity
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 from resources.user import UserRegister
+from flasgger import Swagger
+
 
 app = Flask(__name__)
+swagger = Swagger(app)
 
 app.config['DEBUG'] = True
 
